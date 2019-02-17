@@ -44,11 +44,12 @@ namespace Acembly.Ftx
             }
             else
             {
-                app.UseExceptionHandler("/Error");
+                app.UseDeveloperExceptionPage();
+                //app.UseExceptionHandler("/Error");
                 //app.UseHsts();
+                //app.UseHttpsRedirection();
             }
 
-            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
@@ -62,7 +63,7 @@ namespace Acembly.Ftx
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ui";
-
+               
                 if (env.IsDevelopment())
                 {
                     //spa.UseProxyToSpaDevelopmentServer("http://localhost:3000");
