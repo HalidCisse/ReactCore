@@ -7,14 +7,30 @@ export default class App extends Component {
   
   constructor(){
     super()
+    
+    this.state ={
+      drives:[],
+      files:[]
+    }
   }
   
   componentDidMount() {
     API
         .files
+        .drives()
+        .then(res=>{
+          this.setState({drives:res.data})
+          console.log(res.data)
+        })
+        .catch(err=>{
+          console.error(err)
+        })
+    
+    API
+        .files
         .get()
         .then(res=>{
-          
+          this.setState({files:res.data})
           console.log(res.data)
         })
         .catch(err=>{
@@ -23,6 +39,9 @@ export default class App extends Component {
   }
 
   render() {
+    
+    const {drives, files} = this.state
+    
     return (
       <div className="App">
         <header className="App-header">
@@ -36,17 +55,35 @@ export default class App extends Component {
             </header>
 
             <div>
-
+              {
+                drives.map(d=>{
+                  return <a className='drive'>
+                        Name: {d.name} - ({d.totalSize})
+                  </a>
+                })
+              }
             </div>
           </div>
 
           <div>
-            <header>
-              Here is your files
-            </header>
+            <h2>Here is your files</h2>
 
             <div>
 
+              <ul>
+                {
+                  files.map(item=>{
+                    if (item.IsDirectory)
+                    {
+                      return <ul><li><strong>{item.name}</strong></li></ul>
+                    }
+                    else
+                    {
+                      return <li>{item.name} - {item.length} bytes</li>
+                    }
+                  })
+                }
+              </ul>
             </div>
           </div>
         </div>

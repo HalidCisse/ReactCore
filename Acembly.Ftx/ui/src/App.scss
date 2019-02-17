@@ -20,13 +20,32 @@
   }
   
   .fs{
+    padding: 50px;
+    
+    header{
+      font-size: 20px;
+      font-weight: bold;
+    }
+    
     div:first-of-type{
       margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
       
+      .drive{
+        
+      }
     }
     
     div:nth-last-of-type(2){
+      display: flex;
+      flex-direction: column;
+      text-align: left;
       
+      .file{
+
+      }
     }
   }
 

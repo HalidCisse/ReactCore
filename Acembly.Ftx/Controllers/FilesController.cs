@@ -22,16 +22,16 @@ namespace Acembly.Ftx.Controllers
             }));
 
         [HttpGet]
-        public IActionResult Content([FromServices] IFileProvider fileProvider)
+        public IActionResult Content([FromServices] IFileProvider fileProvider, string path)
         {
             var contents = fileProvider
-                .GetDirectoryContents("");
+                .GetDirectoryContents(path??"");
 
             var files =
                 contents.ToList()
                     .OrderByDescending(f => f.LastModified);
 
-            return Ok(files);
+            return Ok(files.Take(100).ToList());
         }
     }
 }

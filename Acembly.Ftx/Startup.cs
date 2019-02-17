@@ -10,6 +10,7 @@ using Acembly.Ftx.Domain;
 using GlobalExceptionHandler.WebApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
@@ -77,7 +78,8 @@ namespace Acembly.Ftx
                 .AddSignalR();
             
             services
-                .AddSingleton<IFileProvider>(new PhysicalFileProvider("/home"));
+                .AddSingleton<IFileProvider>(new PhysicalFileProvider(
+                Path.Combine(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()))));
 
             
             services
@@ -158,6 +160,13 @@ namespace Acembly.Ftx
             })
                 .UseStaticFiles()
                 .UseSpaStaticFiles();
+            
+            app.UseDirectoryBrowser(new DirectoryBrowserOptions()
+            {
+                FileProvider = new PhysicalFileProvider(
+                    Path.Combine(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()))),
+                RequestPath = new PathString("/fs")
+            });
 
             app.UseMvc(routes => routes.MapRoute(
                 "default",
