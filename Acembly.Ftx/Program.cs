@@ -3,7 +3,6 @@ using System.IO;
 using System.Reflection;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.Kestrel.Https;
 
 namespace Acembly.Ftx
 {
