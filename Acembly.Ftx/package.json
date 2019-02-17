@@ -1,0 +1,67 @@
+{
+  "name": "ui",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Acembly.Ftx",
+  "author": "Halid CIsse",
+  "repository": "",
+  "main": "desktop.js",
+  "scripts": {
+    "postinstall": "install-app-deps",
+    "start": "NODE_ENV=development && electron .",
+    "clean": "rimraf ./publish && mkdir publish && rimraf ./build && mkdir build",
+    "publish-mac": "dotnet publish -c release --self-contained -r osx.10.11-x64 --output bin/build/mac",
+    "publish-win": "dotnet publish -c release --self-contained -r win10-x64 --output bin/build/win",
+    "dist": "publish-mac && build"
+  },
+  "dependencies": {
+    "electron-debug": "^2.1.0",
+    "electron-is-dev": "^1.0.1"
+  },
+  "devDependencies": {
+    "electron": "^4.0.4",
+    "electron-builder": "^20.38.5"
+  },
+  "build": {
+    "appId": "acembly-ftx",
+    "directories": {
+      "buildResources": "../../assets",
+      "output": "bin/publish"
+    },
+    "extraResources": {
+      "from": "bin/build/${os}",
+      "to": "server/",
+      "filter": [
+        "**/*"
+      ]
+    },
+    "mac": {
+      "category": "files transfers",
+      "target": [
+        "dmg"
+      ],
+      "publish": {
+        "provider": "s3",
+        "bucket": ""
+      }
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "publish": {
+        "provider": "s3",
+        "bucket": ""
+      }
+    }
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
