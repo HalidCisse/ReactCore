@@ -125,7 +125,7 @@ namespace Acembly.Ftx
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IFileProvider fileProvider)
         {
             if (env.IsDevelopment())
             {
@@ -163,8 +163,7 @@ namespace Acembly.Ftx
             
             app.UseDirectoryBrowser(new DirectoryBrowserOptions()
             {
-                FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetDirectoryRoot(Directory.GetCurrentDirectory()))),
+                FileProvider = fileProvider,
                 RequestPath = new PathString("/fs")
             });
 

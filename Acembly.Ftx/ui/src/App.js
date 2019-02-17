@@ -50,9 +50,7 @@ export default class App extends Component {
         
         <div className='fs'>
           <div>
-            <header>
-              Here is your drives
-            </header>
+            <h2>Drives</h2>
 
             <div>
               {
@@ -66,16 +64,17 @@ export default class App extends Component {
           </div>
 
           <div>
-            <h2>Here is your files</h2>
+            <h2>Files - <a href='/fs'>Browse files</a></h2>
 
             <div>
-
               <ul>
                 {
                   files.map(item=>{
                     if (item.IsDirectory)
                     {
-                      return <ul><li><strong>{item.name}</strong></li></ul>
+                      return <ul>
+                        <li><strong>{item.name}</strong></li>
+                      </ul>
                     }
                     else
                     {
