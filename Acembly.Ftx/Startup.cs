@@ -24,13 +24,14 @@ namespace Acembly.Ftx
         public void ConfigureServices(IServiceCollection services)
         {
             services
+                .AddCors()
                 .AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             
             services
                 .AddSingleton<IFileProvider>(new PhysicalFileProvider("/home"));
 
-            // In production, the React files will be served from this directory
+            
             services
                 .AddSpaStaticFiles(configuration => configuration.RootPath = "ui/build");
         }
@@ -50,8 +51,15 @@ namespace Acembly.Ftx
                 //app.UseHttpsRedirection();
             }
 
-            app.UseStaticFiles();
-            app.UseSpaStaticFiles();
+            app.UseCors(builder =>{
+                    builder
+                        .AllowAnyHeader()
+                        .AllowAnyMethod()
+                        .SetIsOriginAllowed(host => true)
+                        .AllowCredentials();
+            })
+            .UseStaticFiles()
+            .UseSpaStaticFiles();
 
             app.UseMvc(routes =>
             {

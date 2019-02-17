@@ -22,7 +22,7 @@ namespace Acembly.Ftx.Controllers
             }));
 
         [HttpGet]
-        public IActionResult Files([FromServices] IFileProvider fileProvider)
+        public IActionResult Content([FromServices] IFileProvider fileProvider)
         {
             var contents = fileProvider
                 .GetDirectoryContents("");

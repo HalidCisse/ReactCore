@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
+import API from "./API"
+
 import './App.scss'
 
 export default class App extends Component {
@@ -9,30 +10,47 @@ export default class App extends Component {
   }
   
   componentDidMount() {
-    // fetch('api/files')
-    //     .then(response => response.json())
-    //     .then(data => {
-    //       this.setState({ forecasts: data, loading: false });
-    //     })
+    API
+        .files
+        .get()
+        .then(res=>{
+          
+          console.log(res.data)
+        })
+        .catch(err=>{
+          console.error(err)
+        })
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="#"
-            target="_blank"
-            rel="noopener noreferrer">
-            Ftx Demo
-          </a>
+          .NET Core + Electron = ♥
         </header>
+        
+        <div className='fs'>
+          <div>
+            <header>
+              Here is your drives
+            </header>
+
+            <div>
+
+            </div>
+          </div>
+
+          <div>
+            <header>
+              Here is your files
+            </header>
+
+            <div>
+
+            </div>
+          </div>
+        </div>
       </div>
-    );
+    )
   }
 }

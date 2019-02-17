@@ -12,7 +12,7 @@ export default class API {
             if ((!hub || (hub && hub.stopped)) && localStorage.Authorization) {
                 hub = new HubConnectionBuilder()
                     .configureLogging(LogLevel.Error)
-                    .withUrl(`${API}ws?authorization=${localStorage.Authorization}`, {transport:HttpTransportType.WebSockets, skipNegotiation:true})
+                    .withUrl(`ws?authorization=${localStorage.Authorization}`, {transport:HttpTransportType.WebSockets, skipNegotiation:true})
                     .build()
                 hub.start()
                     .then(() => delete hub.stopped)
@@ -35,11 +35,11 @@ export default class API {
         },
 
         on: func => {
-            if (API.rm.open()) hub.on('ws', func)
+            if (API.ws.open()) hub.on('ws', func)
         },
 
         stop: () => {
-            if (API.rm.open()) {
+            if (API.ws.open()) {
                 hub.stopping = true
                 hub.stop()
                 hub = null
@@ -49,7 +49,10 @@ export default class API {
     }
     
     static files = {
-        Get: (path, skip, limit) =>
-            http.get(API + '/files?limit=' + (limit || '100') + '&skip=' + (skip || '0') + '&path=' + (path || ''))
+        drives: () =>
+            http.get('/files'),
+        
+        get: (path, skip, limit) =>
+            http.get('/files/content?limit=' + (limit || '100') + '&skip=' + (skip || '0') + '&path=' + (path || ''))
     }
 }
