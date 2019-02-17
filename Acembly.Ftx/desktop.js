@@ -78,9 +78,9 @@ function startApi() {
     } else {
         let proc = require('child_process').spawn;
         //  run server
-        let serverPath = path.join(__dirname, '..\\server\\win\\Acembly.Ftx.exe')
+        let serverPath = path.join(__dirname, '..\\server\\Acembly.Ftx.exe')
         if (os.platform() === 'darwin') {
-            serverPath = path.join(__dirname, '..//server//mac//Acembly.Ftx')
+            serverPath = path.join(__dirname, '..//server//Acembly.Ftx')
         }
         
         console.log('serverPath ' + serverPath)
