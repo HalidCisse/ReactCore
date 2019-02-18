@@ -3,25 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "description": "Acembly.Ftx",
-  "author": "Halid CIsse",
+  "author": "Halid Cisse",
   "repository": "",
   "main": "desktop.js",
   "scripts": {
     "postinstall": "install-app-deps",
     "start": "NODE_ENV=development && electron .",
 
-    "clean": "rimraf bin/publish && rimraf bin/build",
+    "clean": "npm-run-all clean-ui && rimraf bin/publish && rimraf bin/build",
     "clean-mac": "rimraf bin/publish/mac && rimraf bin/build/mac",
     "clean-win": "rimraf bin/publish/win-unpacked && rimraf bin/build/win",
+    "clean-ui": "rimraf ui/build/*",
     
     "build": "npm-run-all build-mac build-win",
     "build-mac": "dotnet publish -c release --self-contained -r osx.10.11-x64 --output bin/build/mac",
     "build-win": "dotnet publish -c release --self-contained -r win10-x64 --output bin/build/win",
+    "build-ui": "cd ui && npm run build",
     
     "pack": "electron-builder -mw",
     "pack-mac": "electron-builder --mac",
     "pack-win": "electron-builder --win",
-
+    
     "publish": "npm-run-all clean build pack",
     "publish-mac": "npm-run-all clean-mac build-mac pack-mac",
     "publish-win": "npm-run-all clean-win build-win pack-win"
@@ -34,7 +36,8 @@
     "electron": "^4.0.4",
     "electron-builder": "^20.38.5",
     "npm-run-all": "^4.1.5",
-    "node-sass": "^4.11.0"
+    "node-sass": "^4.11.0",
+    "cross-env": "^5.2.0"
   },
   "build": {
     "appId": "acembly-ftx",

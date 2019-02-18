@@ -83,7 +83,7 @@ namespace Acembly.Ftx
 
             
             services
-                .AddSpaStaticFiles(configuration => configuration.RootPath = "ui/build");
+                .AddSpaStaticFiles(o => o.RootPath = "ui/build");
             
             services.AddSwaggerGen(c => {
                 c.SwaggerDoc("v1", new Info

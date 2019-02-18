@@ -3,7 +3,7 @@ import { Modal } from 'antd'
 
 let login_warning = null
 
-export const http = axios.create({ baseURL: window.API_URL })
+export const http = axios.create({ baseURL: `${window.API_URL}/api` })
 
 http.interceptors.request.use(config=> {
     if (config.url.includes(window.API_URL)) {

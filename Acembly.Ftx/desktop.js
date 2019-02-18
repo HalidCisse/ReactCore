@@ -19,12 +19,13 @@ const createWindow = async () =>  {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: isDev,
-            devTools:isDev
+            nodeIntegration: false,
+            devTools:true
         }
     })
-    mainWindow.once('ready-to-show', () => mainWindow.show())
 
+    mainWindow.webContents.openDevTools()
+    mainWindow.once('ready-to-show', () => mainWindow.show())
     mainWindow.loadURL('http://localhost:5000')
     mainWindow.on('closed', () => mainWindow = null)
 }

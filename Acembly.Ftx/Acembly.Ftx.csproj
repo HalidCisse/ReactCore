@@ -26,8 +26,6 @@
     <ItemGroup>
         <!-- Don't publish the SPA source files, but do show them in the project files list -->
         <Content Remove="$(SpaRoot)**" />
-        <Content Include="ui\src\API.js" />
-        <Content Include="ui\src\http.js" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     </ItemGroup>
@@ -37,9 +35,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="ClientApp\package-lock.json" />
-      <_ContentIncludedByDefault Remove="ClientApp\package.json" />
-      <_ContentIncludedByDefault Remove="ClientApp\public\manifest.json" />
+      <_ContentIncludedByDefault Remove="ui\package-lock.json" />
+      <_ContentIncludedByDefault Remove="ui\package.json" />
+      <_ContentIncludedByDefault Remove="ui\public\manifest.json" />
       <_ContentIncludedByDefault Remove="ui\build\asset-manifest.json" />
       <_ContentIncludedByDefault Remove="ui\build\manifest.json" />
     </ItemGroup>
