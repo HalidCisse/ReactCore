@@ -16,8 +16,8 @@
     "clean-ui": "rimraf ui/build/*",
     
     "build": "npm-run-all build-mac build-win",
-    "build-mac": "dotnet publish -c release --self-contained -r osx.10.11-x64 --output bin/build/mac",
-    "build-win": "dotnet publish -c release --self-contained -r win10-x64 --output bin/build/win",
+    "build-mac": "dotnet publish -c release -o bin/build/mac /p:TrimUnusedDependencies=true /p:LinkDuringPublish=true /p:ShowLinkerSizeComparison=true -r osx.10.11-x64",
+    "build-win": "dotnet publish -c release -o bin/build/win /p:TrimUnusedDependencies=true /p:LinkDuringPublish=true /p:ShowLinkerSizeComparison=true -r win10-x64",
     "build-ui": "cd ui && npm run build",
     
     "pack": "electron-builder -mw",

@@ -6,7 +6,9 @@
         <RuntimeIdentifiers>win10-x64;osx.10.11-x64</RuntimeIdentifiers>
         <TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
         <LangVersion>latest</LangVersion>
-        
+
+        <TrimUnusedDependencies>true</TrimUnusedDependencies>
+        <CrossGenDuringPublish>false</CrossGenDuringPublish>
         <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
         <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
         <IsPackable>false</IsPackable>
@@ -16,8 +18,10 @@
 
     <ItemGroup>
         <PackageReference Include="GlobalExceptionHandler" Version="4.0.0" />
+        <PackageReference Include="ILLink.Tasks" Version="0.1.5-preview-1841731" />
         <PackageReference Include="Microsoft.AspNetCore.App" />
         <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.Packaging.Tools.Trimming" Version="1.1.0-preview1-26619-01" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
         <PackageReference Include="Polly" Version="7.0.2" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
