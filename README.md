@@ -10,3 +10,8 @@
 * Run on mac, windows, and Linux
 * Auto updatable
 * Branding
+
+![Screen shoot](https://github.com/HalidCisse/Acembly.Ftx/raw/master/docs/home.png)
+
+
+![Screen shoot](https://github.com/HalidCisse/Acembly.Ftx/raw/master/docs/files.png)
