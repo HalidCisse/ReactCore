@@ -8,7 +8,7 @@
         <LangVersion>latest</LangVersion>
 
         <TrimUnusedDependencies>true</TrimUnusedDependencies>
-        <CrossGenDuringPublish>false</CrossGenDuringPublish>
+        <CrossGenDuringPublish>true</CrossGenDuringPublish>
         <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
         <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
         <IsPackable>false</IsPackable>

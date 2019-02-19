@@ -16,9 +16,10 @@
     "clean-ui": "rimraf ui/build/*",
     
     "build": "npm-run-all build-mac build-win",
-    "build-mac": "dotnet publish -c release -o bin/build/mac /p:TrimUnusedDependencies=true /p:LinkDuringPublish=true /p:ShowLinkerSizeComparison=true -r osx.10.11-x64",
-    "build-win": "dotnet publish -c release -o bin/build/win /p:TrimUnusedDependencies=true /p:LinkDuringPublish=true /p:ShowLinkerSizeComparison=true -r win10-x64",
+    "build-mac": "dotnet publish -c release -o bin/build/mac /p:TrimUnusedDependencies=true -r osx.10.11-x64",
+    "build-win": "dotnet publish -c release -o bin/build/win /p:TrimUnusedDependencies=true -r win10-x64",
     "build-ui": "cd ui && npm run build",
+    "add this to build when linker bug is fixed": "/p:LinkDuringPublish=true /p:ShowLinkerSizeComparison=true",
     
     "pack": "electron-builder -mw",
     "pack-mac": "electron-builder --mac",

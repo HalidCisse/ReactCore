@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Acembly.Ftx", "Acembly.Ftx\Acembly.Ftx.csproj", "{FC3BAFEA-B231-4C33-9FCC-6313B99A3BDC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{B72DA635-F5A6-40E1-9F07-DF3F61E7F5B0}"
+ProjectSection(SolutionItems) = preProject
+	Doc\files.png = Doc\files.png
+	Doc\home.png = Doc\home.png
+EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
