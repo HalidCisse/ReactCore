@@ -1,0 +1,47 @@
+.App {
+  text-align: center;
+  height: 100%;
+
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 40vmin;
+  }
+
+  .App-header {
+    background-color: #282c34;
+    height: 20%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .fs{
+    padding: 50px;
+    text-align: left;
+    
+    div:first-of-type{
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      
+      .drive{
+        
+      }
+    }
+    
+    div:nth-last-of-type(2){
+      display: flex;
+      flex-direction: column;
+      
+      .file{
+
+      }
+    }
+  }
+
+}
+
