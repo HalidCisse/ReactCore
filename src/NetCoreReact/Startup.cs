@@ -88,9 +88,19 @@ namespace R
                         x.Map<NotImplementedException>().ToStatusCode(HttpStatusCode.NotImplemented);
                     });
 
-                app.UseHsts();
-                app.UseHttpsRedirection();
+                // app.UseHsts();
+                // app.UseHttpsRedirection();
             }
+
+            app
+                .UseCors(builder =>
+                    {
+                        builder
+                            .AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .SetIsOriginAllowed(host => true)
+                            .AllowCredentials();
+                    });
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -102,13 +112,6 @@ namespace R
             app.UseRouting();
 
             app
-                .UseCors(builder => {
-                        builder
-                            .AllowAnyHeader()
-                            .AllowAnyMethod()
-                            .SetIsOriginAllowed(host => true)
-                            .AllowCredentials();
-                    })
                 .UseEndpoints(endpoints =>
                     {
                         endpoints.MapControllerRoute(

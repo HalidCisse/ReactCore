@@ -1,10 +1,11 @@
 const {app, BrowserWindow, autoUpdater, dialog} = require('electron')
-const debug = require('electron-debug')
-
-debug()
+const debug          = require('electron-debug')
 const isDev          = require('electron-is-dev');
 const os             = require('os')
 const path           = require('path')
+const debugMenu      = require('debug-menu')
+
+debug()
 
 let mainWindow
 let serverProcess
@@ -12,7 +13,7 @@ let serverProcess
 const createWindow = async () =>  {
     process.env.REACT_APP_DESKTOP = true
     mainWindow = new BrowserWindow({
-        title:'Acembly',
+        title:'NetCore React',
         backgroundColor:'white',
         titleBarStyle:'hidden',
         show: false,
@@ -24,10 +25,23 @@ const createWindow = async () =>  {
         }
     })
 
-    mainWindow.webContents.openDevTools()
     mainWindow.once('ready-to-show', () => mainWindow.show())
     mainWindow.loadURL('http://localhost:5000')
     mainWindow.on('closed', () => mainWindow = null)
+
+    if (isDev){
+        mainWindow.webContents.openDevTools()
+        const menu = Menu.buildFromTemplate([{
+            label: 'Debug',
+            submenu: debugMenu.windowDebugMenu(win)
+        }]);
+
+        if (process.platform !== 'darwin') {
+            win.setMenu(menu);
+        } else {
+            electron.Menu.setApplicationMenu(menu);
+        }
+    }
 }
 
 const runServer = async () => {
@@ -35,7 +49,7 @@ const runServer = async () => {
         if (mainWindow == null) await createWindow()
     } else {
         let proc = require('child_process').spawn;
-        let serverPath = path.join(__dirname, os.platform() === 'darwin' ? '..//server//Acembly.Ftx' : '..\\server\\Acembly.Ftx.exe')
+        let serverPath = path.join(__dirname, os.platform() === 'darwin' ? '..//server//NetCoreReact' : '..\\server\\NetCoreReact.exe')
 
         serverProcess = proc(serverPath)
         serverProcess.stdout.on('data', async (data) => {

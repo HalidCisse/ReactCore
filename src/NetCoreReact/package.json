@@ -1,54 +1,42 @@
 {
-  "name": "acembly",
+  "name": "netcore.react",
   "version": "0.1.0",
   "private": true,
-  "description": "Acembly.Ftx",
+  "description": "NetCore + React",
   "author": "Halid Cisse",
   "repository": "",
-  "main": "desktop.js",
+  "main": "main.js",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "start": "cross-env NODE_ENV=development && electron .",
-    "clean": "npm-run-all clean-ui && rimraf bin/publish && rimraf bin/build",
-    "clean-mac": "rimraf bin/publish/mac && rimraf bin/build/mac",
-    "clean-win": "rimraf bin/publish/win-unpacked && rimraf bin/build/win",
+    "start": "SET NODE_ENV=development&& electron .",
+    "clean": "npm-run-all clean-ui&& rimraf bin/publish&& rimraf bin/build",
+    "clean-mac": "rimraf bin/publish/mac&& rimraf bin/build/mac",
+    "clean-win": "rimraf bin/publish/win-unpacked&& rimraf bin/build/win",
     "clean-ui": "rimraf ui/build/*",
     "build": "npm-run-all build-mac build-win",
-    "build-mac": "dotnet publish -c release -o bin/build/mac /p:TrimUnusedDependencies=true -r osx.10.11-x64",
-    "build-win": "dotnet publish -c release -o bin/build/win /p:TrimUnusedDependencies=true -r win10-x64",
-    "build-ui": "cd ui && npm run build",
-    "add this to build when linker bug is fixed": "/p:LinkDuringPublish=true /p:ShowLinkerSizeComparison=true",
+    "build-mac": "dotnet publish -c release -o bin/build/mac -r osx.10.11-x64",
+    "build-win": "dotnet publish -c release -o bin/build/win -r win10-x64",
+    "build-ui": "cd ui&& npm run build",
     "pack": "electron-builder -mw",
     "pack-mac": "electron-builder --mac",
     "pack-win": "electron-builder --win",
     "publish": "npm-run-all clean build pack",
-    "publish-mac": "npm-run-all clean-mac build-mac pack-mac",
-    "publish-win": "npm-run-all clean-win build-win pack-win"
+    "publish-mac": "npm-run-all clean-mac clean-ui build-mac pack-mac",
+    "publish-win": "npm-run-all clean-win clean-ui build-win pack-win"
   },
   "dependencies": {
-    "electron-debug": "^2.1.0",
-    "electron-is-dev": "^1.0.1"
+    "electron-debug": "^3.0.1",
+    "electron-is-dev": "^1.2.0",
+    "debug-menu": "0.6.1"
   },
   "devDependencies": {
-    "cross-env": "^5.2.0",
-    "electron": "^4.0.4",
-    "electron-builder": "^20.38.5",
+    "electron": "^8.3.0",
+    "electron-builder": "^22.6.0",
     "node-sass": "^4.14.1",
-    "npm-run-all": "^4.1.5",
-    "browserslist": "^4.12.0",
-    "caniuse-lite": "^1.0.30001055",
-
-    "ajv": "^6.9.1",
-    "typescript": "^3.7.5",
-    "eslint": "^6.8.0",
-    "eslint-config-react-app": "^5.2.0",
-    "eslint-plugin-flowtype": "^4.6.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.18.3"
+    "npm-run-all": "^4.1.5"
   },
   "build": {
-    "appId": "ReactCore",
+    "appId": "netcore.react",
     "directories": {
       "buildResources": "../../assets",
       "output": "bin/publish"
@@ -79,20 +67,5 @@
         "bucket": ""
       }
     }
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
   }
 }
