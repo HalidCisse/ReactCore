@@ -3,9 +3,14 @@ const debug          = require('electron-debug')
 const isDev          = require('electron-is-dev');
 const os             = require('os')
 const path           = require('path')
-const debugMenu      = require('debug-menu')
+const unhandled      = require('electron-unhandled')
+const Store          = require('electron-store')
+const logger         = require('electron-timber')
+
+const store          = new Store()
 
 debug()
+unhandled()
 
 let mainWindow
 let serverProcess
@@ -20,7 +25,7 @@ const createWindow = async () =>  {
         width: 800,
         height: 600,
         webPreferences: {
-            nodeIntegration: false,
+            nodeIntegration: isDev,
             devTools:true
         }
     })
@@ -30,21 +35,17 @@ const createWindow = async () =>  {
     mainWindow.on('closed', () => mainWindow = null)
 
     if (isDev){
+        logger.log(`isDev ${isDev}`)
         mainWindow.webContents.openDevTools()
-        const menu = Menu.buildFromTemplate([{
-            label: 'Debug',
-            submenu: debugMenu.windowDebugMenu(win)
-        }]);
-
-        if (process.platform !== 'darwin') {
-            win.setMenu(menu);
-        } else {
-            electron.Menu.setApplicationMenu(menu);
-        }
     }
 }
 
 const runServer = async () => {
+    logger.log('Starting server ...');
+
+    store.set('server:url', '🦄')
+    logger.log(store.get('server:url'))
+    
     if (isDev) {
         if (mainWindow == null) await createWindow()
     } else {
@@ -53,7 +54,7 @@ const runServer = async () => {
 
         serverProcess = proc(serverPath)
         serverProcess.stdout.on('data', async (data) => {
-            writeLog(`stdout: ${data}`)
+            logger.log(`stdout: ${data}`)
             if (mainWindow == null) await createWindow()
         })
     }
@@ -72,7 +73,7 @@ app.on('activate', async () => {
 })
 
 process.on('exit', ()=> {
-    writeLog('exit')
+    logger.log('exit')
     if(serverProcess)
         serverProcess.kill()
 })
@@ -91,8 +92,6 @@ autoUpdater.on('update-downloaded', (event, releaseNotes, releaseName) => {
 })
 
 autoUpdater.on('error', message => {
-    console.error('There was a problem updating the application')
-    console.error(message)
+    logger.error('There was a problem updating the application')
+    logger.error(message)
 })
-
-writeLog = msg => console.log(msg)
