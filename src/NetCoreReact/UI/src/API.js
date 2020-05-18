@@ -3,8 +3,6 @@ import { HubConnectionBuilder } from '@microsoft/signalr'
 import { http } from './http'
 
 let hub = null
-const delay = ms => new Promise(_ => setTimeout(_, ms))
-
 export default class API {
     
     static ws = {

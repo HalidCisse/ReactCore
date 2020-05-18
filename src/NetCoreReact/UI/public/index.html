@@ -31,9 +31,10 @@
     </style>
 
     <script>
-        API_URL = "%REACT_APP_API_URL%";
-        IS_DEBUG = "%REACT_APP_IS_DEBUG%";
-
+        API_URL    = "%REACT_APP_API_URL%";
+        IS_DEBUG   = "%REACT_APP_IS_DEBUG%";
+        IS_ELETRON = navigator.userAgent.indexOf('Electron') !== -1;
+        
         if (IS_DEBUG === 'true') {
             API_URL = 'http://22e62269.ngrok.io'
         }

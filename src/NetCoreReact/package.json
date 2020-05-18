@@ -8,7 +8,7 @@
   "main": "main.js",
   "scripts": {
     "postinstall": "electron-builder install-app-deps",
-    "start": "SET NODE_ENV=development&& electron .",
+    "start": "SET NODE_ENV=development&& run-electron .",
     "clean": "npm-run-all clean-ui&& rimraf bin/publish&& rimraf bin/build",
     "clean-mac": "rimraf bin/publish/mac&& rimraf bin/build/mac",
     "clean-win": "rimraf bin/publish/win-unpacked&& rimraf bin/build/win",
@@ -26,16 +26,20 @@
   },
   "dependencies": {
     "electron-debug": "^3.0.1",
-    "electron-is-dev": "^1.2.0",
     "electron-unhandled": "3.0.2",
     "electron-store": "5.1.1",
-    "electron-timber": "0.5.1"
+    "electron-timber": "0.5.1",
+    "electron-util" : "0.14.1",
+    "electron-reloader" : "1.0.1",
+    "electron-window-state" : "5.0.3"
   },
   "devDependencies": {
     "electron": "^8.3.0",
     "electron-builder": "^22.6.0",
     "node-sass": "^4.14.1",
-    "npm-run-all": "^4.1.5"
+    "npm-run-all": "^4.1.5",
+    "electron-devtools-installer":"3.0.0",
+    "run-electron": "1.0.0"
   },
   "build": {
     "appId": "netcore.react",

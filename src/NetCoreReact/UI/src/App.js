@@ -20,7 +20,6 @@ export default class App extends Component {
         .drives()
         .then(res=>{
           this.setState({drives:res.data})
-          console.log(res.data)
         })
         .catch(err=>{
           console.error(err)
@@ -31,7 +30,6 @@ export default class App extends Component {
         .get()
         .then(res=>{
           this.setState({files:res.data})
-          console.log(res.data)
         })
         .catch(err=>{
           console.error(err)
@@ -55,9 +53,9 @@ export default class App extends Component {
             <div>
               {
                 drives.map(d=>{
-                  return <a className='drive' key={d.name} > 
+                  return <span className='drive' key={d.name} > 
                         Name: {d.name} - ({d.totalSize})
-                  </a>
+                  </span>
                 })
               }
             </div>

@@ -37,8 +37,6 @@ http.interceptors.response.use(response=> response, error =>{
                         return window.appHistory.go()
                     }
 
-                    //history.push(`/login?returnUrl=${window.location.pathname}`)
-                    window.location.href = window.location.href
                     setTimeout(() => {
                         if(!window.location.pathname.includes('login'))
                         {
