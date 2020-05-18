@@ -7,10 +7,7 @@ const Store             = require('electron-store')
 const logger            = require('electron-timber')
 const { is, darkMode }  = require('electron-util')
 const windowStateKeeper = require('electron-window-state')
-
-const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer')
-
-const store          = new Store()
+const store             = new Store()
 
 debug()
 unhandled()
@@ -89,6 +86,7 @@ const createWindow = async () =>  {
             mainWindow.webContents.openDevTools()
         })
 
+        const { default: installExtension, REACT_DEVELOPER_TOOLS } = require('electron-devtools-installer')
         installExtension(REACT_DEVELOPER_TOOLS)
             .then((name) => logger.log(`Added Extension:  ${name}`))
             .catch((err) => logger.log('An error occurred: ', err));
